@@ -8,25 +8,36 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 find_package(Threads REQUIRED)
 
-add_executable(judge_engine
+# 创建核心库
+add_library(judge_core
     src/judge_engine.cpp
     src/compiler.cpp
     src/sandbox.cpp
     src/result_judger.cpp
     src/submission_handler.cpp
+    src/language_config.cpp
+)
+
+target_link_libraries(judge_core
+    Threads::Threads
+)
+
+# 创建可执行文件
+add_executable(judge_engine
+    src/main.cpp
 )
 
 target_link_libraries(judge_engine
-    Threads::Threads
+    judge_core
 )
 
 enable_testing()
 
 add_executable(test_compiler tests/test_compiler.cpp)
-target_link_libraries(test_compiler judge_engine)
+target_link_libraries(test_compiler judge_core)
 
 add_executable(test_sandbox tests/test_sandbox.cpp)
-target_link_libraries(test_sandbox judge_engine)
+target_link_libraries(test_sandbox judge_core)
 
 add_test(NAME CompilerTest COMMAND test_compiler)
 add_test(NAME SandboxTest COMMAND test_sandbox)
