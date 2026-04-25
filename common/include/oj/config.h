@@ -24,4 +24,6 @@ struct AppConfig {
 
 AppConfig loadConfigFromEnv();
 
+AppConfig loadConfigFromJson(const std::string& configFile);
+
 }  // namespace oj
