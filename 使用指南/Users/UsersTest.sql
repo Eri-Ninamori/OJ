@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS `myOJ`;
+USE`myOJ`;
+
+CREATE TABLE IF NOT EXISTS `Users` (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(32) NOT NULL UNIQUE,
+    password VARCHAR(60) NOT NULL
+);
+
+select * from `myOJ`.`Users`;
