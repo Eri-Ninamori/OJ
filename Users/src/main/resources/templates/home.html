@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>用户主页</title>
+    <!-- 通过 CDN 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+
+<div class="text-2xl font-bold flex">
+    <span class="text-gray-800 px-1">欢迎用户</span>
+    <span th:text="|${session.loginUser}|" class="text-blue-400 px-1"></span>
+    <span class="text-gray-800 px-1">登录本系统</span>
+</div>
+
+<!-- 底部链接 -->
+<div class="mt-8 text-lg">
+    <a href="/logout" class="text-blue-300 hover:underline">用户登出</a>
+</div>
+
+</body>
+</html>
